@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guidance - Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Global Styling */
+        body {
+            background: linear-gradient(135deg,purple, #2a5298);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        h5{
+        color:black;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            padding: 50px 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Career Options */
+        .career-box {
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .career-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Job Listings */
+        .job-listing {
+            background:white;
+            color:black;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .job-listing:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Testimonials */
+        .testimonial-box {
+            background:white;
+            padding: 20px;
+            border-radius: 10px;
+            color:black;
+            margin: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .testimonial-box:hover {
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Career Guidance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./register.html">SignUp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-warning text-dark ms-2" href="./dashboard.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        <h2>Welcome to Your Career Dashboard</h2>
+        <p>Find the best career path for you!</p>
+    </div>
+
+    <!-- Career Options -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow p-3 career-box text-center">
+                    <h4>Take the Career Quiz</h4>
+                    <p>Find the best career for you.</p>
+                    <a href="#" class="btn btn-primary">Start Quiz</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow p-3 career-box text-center">
+                    <h4>View Job Listings</h4>
+                    <p>Find jobs matching your skills.</p>
+                    <a href="#" class="btn btn-success">View Jobs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Listings -->
+    <div class="container mt-5">
+        <h3 class="text-center">Latest Job Listings</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="job-listing p-3">
+                    <h5>Software Developer</h5>
+                    <p>Company: Tech Solutions</p>
+                    <button class="btn btn-outline-light">Apply Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="job-listing p-3">
+                    <h5>Data Scientist</h5>
+                    <p>Company: AI Innovations</p>
+                    <button class="btn btn-outline-light">Apply Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="job-listing p-3">
+                    <h5>Graphic Designer</h5>
+                    <p>Company: Creative Minds</p>
+                    <button class="btn btn-outline-light">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="container mt-5">
+        <h3 class="text-center">What People Say</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial-box">
+                    <p>"This site helped me find my dream job!"</p>
+                    <h6>- Alex Johnson</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-box">
+                    <p>"The career quiz guided me to the right path."</p>
+                    <h6>- Sarah Lee</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

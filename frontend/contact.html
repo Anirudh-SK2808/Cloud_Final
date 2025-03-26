@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Career Guidance</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Background Styling */
+        body {
+           
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            padding-top: 80px; /* Space for fixed navbar */
+         
+            background: linear-gradient(135deg,purple, #2a5298);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        
+
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact Form Box */
+        .contact-box {
+            background: white;
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 35px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Input Fields */
+        .form-control {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px black solid;
+
+            border-radius: 10px;
+            padding: 12px;
+            transition: 0.3s;
+        }
+
+        .form-control::placeholder {
+          color:black;
+        }
+
+
+        /* Submit Button */
+        .btn-submit {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #f85032, #e73827);
+            transform: scale(1.05);
+            box-shadow: 0px 5px 20px rgba(248, 80, 50, 0.6);
+        }
+
+        /* Heading */
+        h2 {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Career Guidance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="./profile.html">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./quiz.html">Career Quiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./job.html">Job Listings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./results.html">Results</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-warning text-dark ms-2" href="./dashboard.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-box mx-auto">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label text-white">Name:</label>
+                    <input type="text" class="form-control" placeholder="Enter your name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-white">Email:</label>
+                    <input type="email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-white">Message:</label>
+                    <textarea class="form-control" rows="3" placeholder="Write your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit w-100">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
