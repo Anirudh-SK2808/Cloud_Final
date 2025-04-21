@@ -91,17 +91,16 @@
       <a href="job.html" class="btn btn-secondary btn-back">← Back to Job Listings</a>
     </div>
   </div>
-
   <script>
-    fetch(`http://localhost:3000/applicants1`)
+    fetch('http://localhost:3000/applicants1')
       .then(response => response.json())
       .then(data => {
         const applicantDetailsContainer = document.getElementById('applicantDetails');
         if (data && data.applicants && data.applicants.length > 0) {
           const applicants = data.applicants;
-  
-          const applicantsHTML = applicants.map(applicant => `
-            <div class="applicant-item">
+ 
+          const applicantsHTML = applicants.map(applicant => 
+            `<div class="applicant-item" id="application-${applicant.application_id}">
               <h4 class="job-title">${applicant.full_name}</h4>
               <div class="meta">
                 <span class="meta-title">Job Title:</span> ${applicant.title || 'N/A'}
@@ -113,7 +112,7 @@
                 <span class="meta-title">Location:</span> ${applicant.loc || 'N/A'}
               </div>
               <div class="meta">
-                <span class="meta-title">Salary:</span> ${applicant.salary ? `$${applicant.salary}` : 'N/A'}
+                <span class="meta-title">Salary:</span> ${applicant.salary ? '$' + applicant.salary : 'N/A'}
               </div>
               <div class="meta">
                 <span class="meta-title">Company:</span> ${applicant.company || 'N/A'}
@@ -128,7 +127,7 @@
                 <span class="meta-title">Full Name:</span> ${applicant.full_name || 'N/A'}
               </div>
               <div class="meta">
-                <span class="meta-title">DOB:</span> ${new Date(applicant.dob).toLocaleDateString() || 'N/A'}
+                <span class="meta-title">DOB:</span> ${applicant.dob ? new Date(applicant.dob).toLocaleDateString() : 'N/A'}
               </div>
               <div class="meta">
                 <span class="meta-title">Email:</span> ${applicant.email || 'N/A'}
@@ -151,10 +150,12 @@
               <div class="meta">
                 <span class="meta-title">User ID:</span> ${applicant.user_id || 'N/A'}
               </div>
-            </div>
-          `).join('');
-  
-          // Display the applicant data
+              <div class="meta">
+                <button class="btn btn-danger" onclick="deleteJobRequest(${applicant.application_id})">Delete</button>
+              </div>
+            </div>`
+          ).join('');
+ 
           applicantDetailsContainer.innerHTML = applicantsHTML;
         } else {
           applicantDetailsContainer.innerHTML = '<p>No applicants found.</p>';
@@ -164,9 +165,38 @@
         document.getElementById('applicantDetails').innerHTML = '<p>Error loading applicants. Please try again later.</p>';
         console.error(error);
       });
-  </script>
+
+  // Function to handle deletion of job request
+  function deleteJobRequest(applicationId) {
+    const confirmation = confirm("Are you sure you want to delete this job request?");
+    if (!confirmation) return;
+
+    fetch(`http://localhost:3000/applications/${applicationId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to delete job request');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.message === 'Job request deleted successfully') {
+        document.getElementById(`application-${applicationId}`).remove();
+        alert('Job request deleted successfully');
+      } else {
+        alert('Error deleting job request: ' + data.message);
+      }
+    })
+    .catch(err => {
+      alert('Error deleting job request: ' + err.message);
+    });
+  }
+</script>
+
   
 </body>
 </html>
-
-

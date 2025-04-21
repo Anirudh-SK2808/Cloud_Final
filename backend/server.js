@@ -538,7 +538,47 @@ app.post('/submit-survey', async (req, res) => {
         res.status(500).json({ error: 'Something went wrong', details: err.message });
     }
 });
-// Routes
+app.delete('/delete-job/:jobId', (req, res) => {
+    const jobId = req.params.jobId;
+  
+    // Check if jobId is provided
+    if (!jobId) {
+      return res.status(400).json({ message: 'Job ID is required' });
+    }
+  
+    // Delete related applications first
+    const deleteApplicationsQuery = 'DELETE FROM application WHERE job_id = ?';
+    
+    db.query(deleteApplicationsQuery, [jobId], (err, result) => {
+      if (err) {
+        console.error('Error while deleting applications:', err);
+        return res.status(500).json({ message: 'Internal server error while deleting applications' });
+      }
+  
+      // Delete the job from the jobs table
+      const deleteJobQuery = 'DELETE FROM jobs WHERE job_id = ?';
+      
+      db.query(deleteJobQuery, [jobId], (err, result) => {
+        if (err) {
+          console.error('Error while deleting job:', err);
+          return res.status(500).json({ message: 'Internal server error while deleting job' });
+        }
+  
+        // Check if job deletion was successful
+        if (result.affectedRows > 0) {
+          return res.json({ success: true, message: 'Job and related applications deleted successfully' });
+        } else {
+          return res.status(404).json({ success: false, message: 'Job not found' });
+        }
+      });
+    });
+  });
+  
+
+  
+  
+  
+  
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "../frontend", "dashboard.html")));
 app.get("/apply", (req, res) => res.sendFile(path.join(__dirname, "../frontend", "application.html")));
 app.get("/dashboard", (req, res) => res.sendFile(path.join(__dirname, "../frontend", "dashboard.html")));

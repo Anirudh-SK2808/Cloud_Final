@@ -120,10 +120,12 @@
         jobsList.innerHTML = jobs.map(job => `
             <div class="col-md-6 col-lg-4">
                 <div class="job-card h-100">
-                    <h5 class="job-title">${job.title}</h5>
-                    <p class="job-meta"><i class="fas fa-building"></i> ${job.company}</p>
-                    <p class="job-meta"><i class="fas fa-map-marker-alt"></i> ${job.location}</p>
-                    <p class="job-meta"><i class="fas fa-map-marker-alt"></i> ${job.role}</p>
+                    <h5 class="job-title">💼 ${job.title}</h5>
+                    <p class="job-meta">🏢 ${job.company}</p>
+                    <p class="job-meta">📍 ${job.location}</p>
+                    <p class="job-meta">👨‍💻 ${job.role}</p>
+                    <p class="job-meta">💰 ${job.salary}</p>
+                    <p class="job-meta">🕒 Posted on: ${new Date(job.posted_at).toLocaleString()}</p>
                     <a href="application.html?job_id=${job.job_id}&title=${job.title}&description=${job.description}&loc=${job.location}&salary=${job.salary}&posted_at=${job.posted_at}&company=${job.company}&role=${job.role}" class="btn btn-sm apply-btn mt-2">Apply Now</a>
                 </div>
             </div>
