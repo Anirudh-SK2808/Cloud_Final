@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listing Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 1150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            padding-top: 350px;
+            background: linear-gradient(135deg, purple, #2a5298);
+            color: white;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .job-form-box {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 12px;
+            transition: 0.3s;
+        }
+
+        .form-control::placeholder {
+            color: black;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #f85032, #e73827);
+            transform: scale(1.05);
+            box-shadow: 0px 5px 20px rgba(248, 80, 50, 0.6);
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #2a5298;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        #ak{
+            position: absolute;
+            top:100px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">Career Guidance</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="./profile1.html">Profile</a></li>
+              <li class="nav-item"><a class="nav-link" href="./job1.html">Job Listings</a></li>
+              <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="./my-job.html">Mylist</a></li>
+              <li class="nav-item"><a class="nav-link active" href="./joblist.html">List Jobs</a></li>
+              <li class="nav-item"><a class="nav-link btn btn-warning text-dark ms-2" href="./dashboard.html">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div id="ak" class="container">
+        <h2>Post a Job Listing</h2>
+        <div class="job-form-box mx-auto">
+            <form id="jobForm">
+                <div class="mb-4">
+                    <span class="section-title">Job Details</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Job Title:</label>
+                            <input type="text" class="form-control" id="title" placeholder="Enter job title" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Company Name:</label>
+                            <input type="text" class="form-control" id="company" placeholder="Enter company name" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <span class="section-title">Role & Location</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Role:</label>
+                            <input type="text" class="form-control" id="role" placeholder="Enter role (e.g., Software Engineer)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Location:</label>
+                            <input type="text" class="form-control" id="location" placeholder="Enter job location" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <span class="section-title">Salary</span><br>
+                    <label class="form-label text-dark">Salary ($):</label>
+                    <input type="number" class="form-control" id="salary" placeholder="Enter salary" min="0" required>
+                </div>
+                <div class="mb-4">
+                    <span class="section-title">Job Description</span><br>
+                    <label class="form-label text-dark">Description:</label>
+                    <textarea class="form-control" id="description" rows="4" placeholder="Enter job description..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit w-100">Submit Job Listing</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('jobForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const jobData = {
+                title: document.getElementById('title').value.trim(),
+                company: document.getElementById('company').value.trim(),
+                role: document.getElementById('role').value.trim(),
+                location: document.getElementById('location').value.trim(),
+                salary: document.getElementById('salary').value.trim(),
+                description: document.getElementById('description').value.trim()
+            };
+    
+            // Basic client-side validation
+            if (!jobData.title || !jobData.company || !jobData.role || !jobData.location || !jobData.salary || !jobData.description) {
+                alert('Please fill in all fields before submitting.');
+                return;
+            }
+            
+            if (isNaN(jobData.salary) || parseFloat(jobData.salary) < 0) {
+                alert('Please enter a valid positive number for salary.');
+                return;
+            }
+    
+            try {
+                const response = await fetch("http://localhost:3000/post_job", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jobData)
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status} ${response.statusText}`);
+                }
+    
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert(`Error: ${data.error}`);
+                } else {
+                    alert('Job posted successfully!');
+                    document.getElementById('jobForm').reset();
+                }
+    
+            } catch (error) {
+                alert('An error occurred while posting the job. Please try again later.');
+                console.error('Error:', error);
+            }
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

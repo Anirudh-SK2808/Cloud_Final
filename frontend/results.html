@@ -1,44 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Recommendations</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Career Recommendations</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(to right, #4B0082, #8A2BE2);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 80px;
+    }
+    .navbar {
+      background-color: #3a0ca3 !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+    .career-card {
+      background-color: #fff;
+      color: #333;
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .career-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #4B0082;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    .career-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 50px;
+      height: 4px;
+      background: #8A2BE2;
+      border-radius: 2px;
+    }
+    .career-item {
+      display: flex;
+      align-items: center;
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .career-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+    .career-item .icon {
+      font-size: 1.5rem;
+      color: #8A2BE2;
+      margin-right: 12px;
+    }
+    .career-item .name {
+      flex-grow: 1;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    .find-jobs-btn {
+      margin-top: 25px;
+      font-size: 1.1rem;
+      padding: 12px 32px;
+      border-radius: 30px;
+      transition: background-color .2s, transform .2s;
+    }
+    .find-jobs-btn:hover {
+      background-color: #2e0751;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
-    <nav id ="bar" class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">Career Guidance</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="./profile.html">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./quiz.html">Career Quiz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./job.html">Job Listings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./results">Results</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-warning text-dark ms-2" href="./dashboard.html">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container text-center mt-5">
-        <h2>Your Career Recommendations</h2>
-        <p>Based on your quiz results, here are the top career paths for you:</p>
-
-        <ul class="list-group list-group-flush mt-3">
-            <li class="list-group-item">Software Engineer</li>
-            <li class="list-group-item">Data Scientist</li>
-            <li class="list-group-item">Entrepreneur</li>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Career Guidance</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="./profile.html">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="./quiz.html">Career Quiz</a></li>
+            <li class="nav-item"><a class="nav-link " href="./job.html">Job Listings</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./results.html">Results</a></li>
+            <li class="nav-item"><a class="nav-link" href="./contact1.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="./user_applications.html">Status</a></li>
+            <li class="nav-item"><a class="nav-link btn btn-warning text-dark ms-2" href="./dashboard.html">Logout</a></li>
+        
         </ul>
-
-        <a href="jobs.html" class="btn btn-primary mt-3">Find Jobs</a>
+      </div>
     </div>
+  </nav>
 
+  <div class="container mt-5">
+    <div class="career-card text-center">
+      <h2 class="career-title">Career Options</h2>
+      <p class="mb-4">Explore the job paths best suited for you:</p>
+      <div id="career-list">
+        <!-- Career options will be dynamically inserted here -->
+      </div>
+      <a href="jobs.html" class="btn btn-warning find-jobs-btn">Find Jobs</a>
+    </div>
+  </div>
+
+  <script>
+    // Fetch career paths from the API
+    fetch('http://localhost:3000/career-paths')  // Call to your API endpoint
+      .then(response => response.json())
+      .then(careerPaths => {
+        const careerListContainer = document.getElementById('career-list');
+
+        // Check if careerPaths array is not empty
+        if (careerPaths.length > 0) {
+          careerPaths.forEach(career => {
+            const careerItem = document.createElement('div');
+            careerItem.classList.add('career-item');
+
+            const careerIcon = document.createElement('i');
+            careerIcon.classList.add('fas', 'fa-briefcase', 'icon');  // Use an appropriate icon
+
+            const careerName = document.createElement('div');
+            careerName.classList.add('name');
+            careerName.textContent = career;  // Display career name
+
+            careerItem.appendChild(careerIcon);
+            careerItem.appendChild(careerName);
+            careerListContainer.appendChild(careerItem);
+          });
+        } else {
+          careerListContainer.innerHTML = '<p>No career paths found. Please check back later.</p>';
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching career data:', error);
+        const careerListContainer = document.getElementById('career-list');
+        careerListContainer.innerHTML = '<p>Failed to load career paths. Please try again later.</p>';
+      });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

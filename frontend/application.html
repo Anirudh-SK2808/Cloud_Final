@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form - Career Guidance</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            height:1300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            padding-top: 450px;
+            background: linear-gradient(135deg, purple, #2a5298);
+            color: white;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .application-box {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 12px;
+            transition: 0.3s;
+        }
+        .form-control::placeholder {
+            color: black;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #f85032, #e73827);
+            transform: scale(1.05);
+            box-shadow: 0px 5px 20px rgba(248, 80, 50, 0.6);
+        }
+        h2 {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #2a5298;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        #ak{
+            position: absolute;
+            top:100px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Career Guidance</a>
+        </div>
+    </nav>
+    <div id="ak" class="container">
+        <h2>Application Form</h2>
+        <div class="application-box mx-auto">
+            <form id="applicationForm">
+                <div class="mb-4">
+                    <span class="section-title">Personal Information</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Full Name:</label>
+                            <input type="text" id="full_name" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Date of Birth:</label>
+                            <input type="date" id="dob" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+             
+                <div class="mb-4">
+                    <span class="section-title">Contact Details</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Email:</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Phone Number:</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <span class="section-title">Professional Details</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label text-dark">Years of Experience:</label>
+                            <input type="number" id="yrs_of_experience" class="form-control" min="0" placeholder="Enter your years of experience">
+                        </div>
+                   
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <span class="section-title">Resume</span>
+                    <input type="url" id="resume_link" class="form-control" placeholder="Enter the link to your resume">
+                </div>
+               
+                <button type="submit" onclick="submitApplication(event)" class="btn btn-submit w-100">Submit Application</button>
+            </form>
+        </div>
+    </div>
+    <script>
+function submitApplication(event) {
+    // Extract job-related data from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const jobId = urlParams.get('job_id');
+    const title = urlParams.get('title');
+    const description = urlParams.get('description');
+    const loc = urlParams.get('loc');
+    const salary = urlParams.get('salary');
+    const postedAt = urlParams.get('posted_at');
+    const company = urlParams.get('company');
+    const role = urlParams.get('role');  // Role from the URL
+
+    event.preventDefault();
+
+    // Collect form data and add job-related data
+    const fullName = document.getElementById("full_name").value;
+    const dob = document.getElementById("dob").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const yrsOfExperience = parseInt(document.getElementById("yrs_of_experience").value, 10) || 0;
+    const resumeLink = document.getElementById("resume_link").value;
+
+    // Simple validation
+    if (!fullName || !dob || !email || !phone || !resumeLink) {
+        alert("Please fill out all required fields.");
+        return;
+    }
+
+    const formData = {
+        full_name: fullName,
+        dob: dob,
+        job_id: jobId, // Using job_id from URL params
+        email: email,
+        phone: phone,
+        yrs_of_experience: yrsOfExperience,
+        role: role, // Role fetched from URL
+        resume_link: resumeLink,
+        
+        // Additional job-related fields
+        title: title,
+        description: description,
+        loc: loc,
+        salary: salary,
+        posted_at: postedAt,
+        company: company
+    };
+
+    // Send data to the backend via a POST request
+    fetch("http://localhost:3000/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json()) // Convert response to JSON
+    .then(data => {
+        console.log(data); // Debugging
+        if (data.success) {
+            alert("Application submitted successfully!");
+        } else {
+            alert("Error: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Error submitting application:", error);
+        alert("Error submitting application: " + error.message);
+    });
+}
+
+
+
+
+
+    </script>
+</body>
+</html>
